@@ -26,7 +26,7 @@ Apna Media is a full-stack social media application inspired by Instagram, featu
   <tr>
     <td><img src="https://github.com/schn-02/Apna_Media_A_Social_Media_Platform/blob/4ae1c689a1808f23dd806dc7ee476e682e2dea37/Screenshot%202026-01-08%20014820.png" width="150"/></td>
     <td><img src="https://github.com/schn-02/Apna_Media_A_Social_Media_Platform/blob/4ae1c689a1808f23dd806dc7ee476e682e2dea37/Screenshot%202026-01-08%20014940.png" width="150"/></td>
-    <td><img src="https://github.com/schn-02/Apna_Media_A_Social_Media_Platform/blob/4ae1c689a1808f23dd806dc7ee476e682e682e2dea37/Screenshot%202026-01-08%20015003.png" width="150"/></td>
+    <td><img src="https://github.com/schn-02/Apna_Media_A_Social_Media_Platform/blob/49d47e2d247c56a12b0e31c5d71d5a1633ec6d81/Screenshot%202026-01-08%20015003.png" width="150"/></td>
     <td><img src="https://github.com/schn-02/Apna_Media_A_Social_Media_Platform/blob/4ae1c689a1808f23dd806dc7ee476e682e2dea37/Screenshot%202026-01-08%20015034.png" width="150"/></td>
   </tr>
 </table>

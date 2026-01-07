@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3F0F0"
+    android:orientation="vertical"
+    tools:context=".Chat.chatDetail">
+
+    <!-- FrameLayout ka use Lottie ko background mein rakhne ke liye -->
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:drawingCacheQuality="auto"
+            app:srcCompat="@drawable/back1" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/chatprofilePic"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="25dp"
+            android:drawingCacheQuality="auto"
+            android:src="@drawable/userstory"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="4dp"
+            app:civ_circle_background_color="#EDE6E6" />
+
+        <TextView
+            android:id="@+id/Chatusername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:drawingCacheQuality="auto"
+            android:maxWidth="280dp"
+            android:text="User Name"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <ImageView
+            android:id="@+id/background_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/v"  />
+
+
+        <!-- RecyclerView for chats -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chatRecycler1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#000000"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/messageChats"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/chat_send_message_bg"
+            android:ems="10"
+            android:hint="Enter here"
+            android:inputType="text"
+            android:textColorHint="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/send"
+            android:layout_width="55dp"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/send" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,88 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/linearPost"
+    android:background="@color/black"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:layout_marginTop="40dp"
+        >
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/cross"
+            android:id="@+id/cross"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Post"
+            android:layout_marginLeft="20dp"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:backgroundTint="@color/black"
+            android:id="@+id/nextPostt"
+            android:text="Next"
+            android:drawableRight="@drawable/right"
+            android:drawablePadding="10dp"
+            android:textAlignment="textEnd"
+            android:layout_marginLeft="80dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <!-- Upper Half Screen for Selected Image -->
+    <ImageView
+        android:id="@+id/selectedImageView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:src="@drawable/user"
+        android:layout_weight="1"
+        android:scaleType="centerCrop"
+        android:background="@color/black" />
+
+ <LinearLayout
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_margin="10dp"
+     android:orientation="horizontal">
+
+     <ImageView
+         android:layout_width="40dp"
+         android:layout_height="40dp"
+         android:src="@drawable/camera"
+         android:id="@+id/camera"
+         android:layout_marginLeft="320dp"
+         android:layout_marginRight="20dp"/>
+
+ </LinearLayout>
+
+    <!-- Lower Half Screen for Gallery RecyclerView -->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/galleryRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp"
+
+        app:spanCount="4"
+        android:orientation="vertical" />
+</LinearLayout>

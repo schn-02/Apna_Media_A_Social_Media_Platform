@@ -1,194 +1,267 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/black"
-    android:layout_height="wrap_content">
-
+    android:layout_height="wrap_content"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginBottom="12dp"
+    app:cardBackgroundColor="#120819"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="6dp"
+    app:strokeColor="#F807D1"
+    app:strokeWidth="1dp">
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black"
-        android:layout_marginTop="28dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:background="@drawable/bg_home_post_item"
+        android:orientation="vertical"
+        android:paddingTop="12dp"
+        android:paddingBottom="14dp">
 
-        <ImageView
-            android:id="@+id/PostProfile"
-            android:layout_width="50dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/userstory" />
-
+        <!-- Top User Section -->
         <LinearLayout
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:id="@+id/PostUserName"
-                android:layout_marginTop="10dp"
-                android:text="Profile Name"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:maxWidth="400dp"
-                android:text="Song"
-                android:id="@+id/PostSong"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:layout_height="wrap_content">
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/PostProfile"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#24112C"
+                android:padding="2dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/userstory"
+                app:shapeAppearanceOverlay="@style/CircleImageShape"
+                app:strokeColor="#FF4FC3"
+                app:strokeWidth="1.5dp"
+                tools:src="@drawable/userstory" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/PostUserName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="Profile Name"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="Sachin Rawat" />
+
+                <!-- Song Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:layout_marginEnd="6dp"
+                        android:contentDescription="Song"
+                        android:src="@drawable/ic_song_small_pink" />
+
+                    <TextView
+                        android:id="@+id/PostSong"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ellipsize="marquee"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:includeFontPadding="false"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:maxLines="1"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:text="Song"
+                        android:textColor="#DFA7F1"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        tools:text="Original Audio • Apna Media" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
             <TextView
-                android:layout_width="wrap_content"
                 android:id="@+id/ShowPostDate"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:background="@drawable/bg_home_post_date_chip"
+                android:gravity="center"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
                 android:text="Date"
+                android:textColor="#D8C8E0"
+                android:textSize="11sp"
                 android:textStyle="bold"
-                android:textColor="#08F820"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="10dp"
-                android:textSize="15sp"
-                />
+                tools:text="Today" />
+
         </LinearLayout>
 
+        <!-- Image Slider: black fade removed -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="410dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/bg_home_post_image_container"
+            android:clipToOutline="true">
 
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/PostImageSlider"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#08040C" />
 
+            <ImageView
+                android:id="@+id/playMusic"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="14dp"
+                android:layout_marginBottom="14dp"
+                android:background="@drawable/bg_home_music_floating"
+                android:contentDescription="Play music"
+                android:padding="11dp"
+                android:src="@drawable/volume"
+                android:visibility="visible"
+                app:tint="#FFFFFF" />
+
+            <ImageView
+                android:id="@+id/stopMusic"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="14dp"
+                android:layout_marginBottom="14dp"
+                android:background="@drawable/bg_home_music_floating"
+                android:contentDescription="Stop music"
+                android:padding="11dp"
+                android:src="@drawable/slash"
+                android:visibility="gone"
+                app:tint="#FFFFFF" />
+
+        </FrameLayout>
+
+        <!-- Minimal Action Bar -->
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/bg_home_post_action_bar"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
+
+            <ImageView
+                android:id="@+id/PostLike"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="Like"
+                android:src="@drawable/heartpost" />
+
+            <TextView
+                android:id="@+id/Likes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:text="Likes"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                tools:text="12" />
+
+            <ImageView
+                android:id="@+id/PostComment"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="18dp"
+                android:contentDescription="Comment"
+                android:src="@drawable/comment"
+                app:tint="#DFA7F1" />
+
+            <TextView
+                android:id="@+id/Comments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/PostShare"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="Share"
+                android:src="@drawable/send"
+                app:tint="#FF4FC3" />
+
+            <TextView
+                android:id="@+id/Share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:text="Share"
+                android:textColor="#DFA7F1"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <!-- Caption: integrated with post -->
+        <TextView
+            android:id="@+id/PostCaption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:background="@android:color/transparent"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="4dp"
+            android:paddingStart="2dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="2dp"
+            android:paddingBottom="2dp"
+            android:text="Caption"
+            android:textColor="#EDE4F2"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:text="tarasti hai nigahen 👀💕❤️" />
 
     </LinearLayout>
 
-    <com.denzcoskun.imageslider.ImageSlider
-        android:id="@+id/PostImageSlider"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:background="@color/white"
-        android:backgroundTint="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" >
-
-
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="340dp"
-            android:id="@+id/playMusic"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="22dp"
-            android:visibility="visible"
-            android:src="@drawable/volume" />
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:id="@+id/stopMusic"
-            android:layout_marginTop="340dp"
-            android:visibility="gone"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="22dp"
-            android:src="@drawable/slash" />
-    </com.denzcoskun.imageslider.ImageSlider>
-
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/black"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PostImageSlider">
-
-        <ImageView
-            android:id="@+id/PostLike"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:src="@drawable/heartpost" />
-
-        <TextView
-            android:id="@+id/Likes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="6dp"
-            android:text="Likes"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-
-        <ImageView
-            android:id="@+id/PostComment"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:src="@drawable/comment" />
-
-        <TextView
-            android:id="@+id/Comments"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="6dp"
-            android:text="0"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-
-        <ImageView
-            android:id="@+id/PostShare"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:src="@drawable/send" />
-
-        <TextView
-            android:id="@+id/Share"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="6dp"
-            android:text="Share"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/PostCaption"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Caption"
-        android:textColor="#0CE814"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

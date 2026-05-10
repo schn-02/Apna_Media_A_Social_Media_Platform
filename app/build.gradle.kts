@@ -65,6 +65,11 @@ dependencies {
     annotationProcessor("com.github.bumptech.glide:compiler:4.15.1")
     implementation("com.facebook.shimmer:shimmer:0.5.0@aar")
 
+    implementation("io.github.jamaismagic.ffmpeg:ffmpeg-kit-main-full-gpl-16kb:6.1.4")
+    implementation("androidx.media3:media3-transformer:1.8.0")
+    implementation("androidx.media3:media3-common:1.8.0")
+    implementation("androidx.media3:media3-exoplayer:1.8.0")
+
     implementation(libs.firebase.auth)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

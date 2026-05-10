@@ -1,77 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/messenger_bg"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginBottom="8dp"
+    app:cardBackgroundColor="#1B1326"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="6dp"
+    app:strokeColor="#7A2A75"
+    app:strokeWidth="1dp">
 
-
-    <ImageView
-        android:id="@+id/messengerRequestProfile"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_margin="10dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/userstory"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <TextView
-        android:id="@+id/RequestUsername"
-        android:layout_width="150dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="UserName"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/RequestPeoples"
-        app:layout_constraintHorizontal_bias="0.25"
-        app:layout_constraintStart_toEndOf="@+id/messengerRequestProfile"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="@drawable/bg_request_received_item"
+        android:gravity="center_vertical"
+        android:minHeight="104dp"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="12dp">
 
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/messengerRequestProfile"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:background="#24112C"
+            android:padding="2dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/userstory"
+            app:shapeAppearanceOverlay="@style/CircleImageShape"
+            app:strokeColor="#FF4FC3"
+            app:strokeWidth="2dp"
+            tools:src="@drawable/userstory" />
 
-    <TextView
-        android:id="@+id/RequestDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
-        android:text="Date"
-        android:textColor="#FBE204"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/messengerRequestProfile"
-        app:layout_constraintVertical_bias="0.0" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/RequestPeoples"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="88dp"
-        android:src="@drawable/check"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.278" />
+            <TextView
+                android:id="@+id/RequestUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="UserName"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="Sachin Rawat" />
 
-    <ImageView
-        android:id="@+id/RequestCancelPeoples"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="24dp"
-        android:src="@drawable/cancel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.941"
-        app:layout_constraintStart_toEndOf="@+id/RequestPeoples"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.278" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:ellipsize="end"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="sent you a friend request"
+                android:textColor="#A98FB3"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/RequestDate"
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_request_date_chip"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="Date"
+                android:textColor="#FFD84D"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                tools:text="Today" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="98dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/RequestPeoples"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:background="@drawable/bg_request_accept_button"
+                android:contentDescription="Accept request"
+                android:padding="10dp"
+                android:src="@drawable/ic_request_accept_clean" />
+
+            <ImageView
+                android:id="@+id/RequestCancelPeoples"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/bg_request_cancel_button"
+                android:contentDescription="Cancel request"
+                android:padding="10dp"
+                android:src="@drawable/ic_request_cancel_clean" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

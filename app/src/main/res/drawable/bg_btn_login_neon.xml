@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true">
+        <layer-list>
+
+            <item>
+                <shape>
+                    <corners android:radius="22dp" />
+                    <gradient
+                        android:angle="135"
+                        android:startColor="#B90083"
+                        android:centerColor="#DE019C"
+                        android:endColor="#5B21D6" />
+                </shape>
+            </item>
+
+            <item
+                android:left="1dp"
+                android:top="1dp"
+                android:right="1dp"
+                android:bottom="1dp">
+                <shape>
+                    <corners android:radius="21dp" />
+                    <stroke
+                        android:width="1dp"
+                        android:color="#AAFFFFFF" />
+                    <solid android:color="#00000000" />
+                </shape>
+            </item>
+
+        </layer-list>
+    </item>
+
+    <item>
+        <layer-list>
+
+            <!-- Outer glow border -->
+            <item>
+                <shape>
+                    <corners android:radius="22dp" />
+                    <gradient
+                        android:angle="135"
+                        android:startColor="#FF4FC3"
+                        android:centerColor="#DE019C"
+                        android:endColor="#3A8DFF" />
+                </shape>
+            </item>
+
+            <!-- Main inner button -->
+            <item
+                android:left="1.5dp"
+                android:top="1.5dp"
+                android:right="1.5dp"
+                android:bottom="1.5dp">
+                <shape>
+                    <corners android:radius="21dp" />
+                    <gradient
+                        android:angle="135"
+                        android:startColor="#DE019C"
+                        android:centerColor="#B723A0"
+                        android:endColor="#7B2CFF" />
+                </shape>
+            </item>
+
+            <!-- Soft glass shine -->
+            <item
+                android:left="3dp"
+                android:top="3dp"
+                android:right="3dp"
+                android:bottom="30dp">
+                <shape>
+                    <corners android:topLeftRadius="19dp"
+                        android:topRightRadius="19dp"
+                        android:bottomLeftRadius="8dp"
+                        android:bottomRightRadius="8dp" />
+                    <gradient
+                        android:angle="270"
+                        android:startColor="#55FFFFFF"
+                        android:endColor="#00FFFFFF" />
+                </shape>
+            </item>
+
+        </layer-list>
+    </item>
+
+</selector>

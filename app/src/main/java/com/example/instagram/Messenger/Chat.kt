@@ -8,10 +8,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.core.net.toUri
-import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.instagram.Adapters.ChatFragmentAdapter
 import com.example.instagram.MainActivity
@@ -19,136 +17,256 @@ import com.example.instagram.Models.PostModel
 import com.example.instagram.ViewProfile.ViewProfile
 import com.example.instagram.databinding.FragmentChatBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-
 
 class Chat : Fragment() {
 
-    private   var  posts =ArrayList<PostModel>()
-    private   var  list =ArrayList<String>()
+    private var posts = ArrayList<PostModel>()
+    private var list = ArrayList<String>()
 
     private var _binding: FragmentChatBinding? = null
-    private lateinit var   adapter: ChatFragmentAdapter
     private val binding get() = _binding!!
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        _binding = FragmentChatBinding.inflate(inflater, container, false)
-         adapter = ChatFragmentAdapter(requireContext() , posts)
-        binding.messengerChatRecycler.adapter = adapter
-        binding.messengerChatRecycler.layoutManager = LinearLayoutManager(requireContext())
 
+    private lateinit var adapter: ChatFragmentAdapter
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View {
+        _binding = FragmentChatBinding.inflate(inflater, container, false)
+
+        adapter = ChatFragmentAdapter(requireContext(), posts)
+
+        binding.messengerChatRecycler.layoutManager = LinearLayoutManager(requireContext())
+        binding.messengerChatRecycler.adapter = adapter
+
+        showLoading()
+        setupSearch()
         getData()
 
-        binding.searchChat.addTextChangedListener( object :TextWatcher{
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun onTextChanged(Text: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-                adapter.filter?.filter(Text.toString().trim())
-
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-
-            }
-
-        })
-
-        getListData(list)
         return binding.root
+    }
+
+    private fun setupSearch() {
+        binding.searchChat.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(
+                text: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int,
+            ) {
+            }
+
+            override fun onTextChanged(
+                text: CharSequence?,
+                start: Int,
+                before: Int,
+                count: Int,
+            ) {
+                adapter.filter?.filter(text.toString().trim())
+            }
+
+            override fun afterTextChanged(editable: Editable?) {
+            }
+        })
     }
 
     private fun getData() {
         val uid = FirebaseAuth.getInstance().currentUser?.uid
-        val db = FirebaseDatabase.getInstance().getReference().child("User/UserInfo/$uid/RequestAccept")
-        db.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                for (req in snapshot.children) {
-                    list.add(req.value.toString())
-                }
-                // Data fetch ho gaya, ab list ko process karo
-                getListData(list)
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                // Handle cancellation error here
+        if (uid == null) {
+            showEmpty()
+            return
+        }
+
+        val db = FirebaseDatabase.getInstance()
+            .getReference()
+            .child("User/UserInfo/$uid/RequestAccept")
+
+        db.get()
+            .addOnSuccessListener { snapshot ->
+                list.clear()
+                posts.clear()
+
+                adapter.original = ArrayList(posts)
+                adapter.differ.submitList(ArrayList(posts))
+                adapter.notifyDataSetChanged()
+
+                if (!snapshot.exists() || snapshot.childrenCount == 0L) {
+                    showEmpty()
+                    return@addOnSuccessListener
+                }
+
+                for (req in snapshot.children) {
+                    val friendUid = req.value?.toString()
+                    if (!friendUid.isNullOrEmpty()) {
+                        list.add(friendUid)
+                    }
+                }
+
+                if (list.isEmpty()) {
+                    showEmpty()
+                } else {
+                    getListData(list)
+                }
             }
-        })
+            .addOnFailureListener {
+                showEmpty()
+            }
     }
-    private fun getListData(list: ArrayList<String>) {
+
+    private fun getListData(friendUidList: ArrayList<String>) {
         posts.clear()
 
-        for (li in list) {
-            val db = FirebaseDatabase.getInstance().getReference().child("User/UserInfo/$li")
-            db.get().addOnSuccessListener { snapshot ->
-                val ProfileImage = snapshot.child("ProfileImage").getValue(String::class.java)?.toUri()
-                val ProfileName = snapshot.child("name").getValue(String::class.java)
-                val Adminuid = snapshot.child("adminUID").getValue(String::class.java)
+        var loadedCount = 0
+        val totalCount = friendUidList.size
 
-                // Callback function use kar rahe hain
-                getLastMessage(Adminuid) { lastMessage ->
-                    val post = PostModel(
-                        profileImage = ProfileImage,
-                        userName = ProfileName,
-                        AdminUID = Adminuid,
-                        LastMessage = lastMessage
-                    )
+        friendUidList.forEach { friendUid ->
 
-                    posts.add(post)
+            val db = FirebaseDatabase.getInstance()
+                .getReference()
+                .child("User/UserInfo/$friendUid")
 
-                    adapter.original = ArrayList(posts)  // ✅ Original list bhi update ho
-                    adapter.differ.submitList(ArrayList(posts))  // ✅ List ka copy pass karo
+            db.get()
+                .addOnSuccessListener { snapshot ->
 
-                    adapter.notifyDataSetChanged()
+                    val profileImage = snapshot.child("ProfileImage")
+                        .getValue(String::class.java)
+                        ?.toUri()
+
+                    val profileName = snapshot.child("name")
+                        .getValue(String::class.java)
+
+                    val adminUid = snapshot.child("adminUID")
+                        .getValue(String::class.java)
+
+                    getLastMessage(adminUid) { lastMessage ->
+
+                        val post = PostModel(
+                            profileImage = profileImage,
+                            userName = profileName,
+                            AdminUID = adminUid,
+                            LastMessage = lastMessage
+                        )
+
+                        posts.add(post)
+
+                        adapter.original = ArrayList(posts)
+                        adapter.differ.submitList(ArrayList(posts))
+                        adapter.notifyDataSetChanged()
+
+                        loadedCount++
+                        checkLoadingComplete(loadedCount, totalCount)
+                    }
                 }
-            }.addOnFailureListener {
-                // Handle error here
-            }
+                .addOnFailureListener {
+                    loadedCount++
+                    checkLoadingComplete(loadedCount, totalCount)
+                }
         }
     }
 
     private fun getLastMessage(adminUID: String?, callback: (String) -> Unit) {
         val uid = FirebaseAuth.getInstance().currentUser?.uid
-        val ChatRoom = uid + adminUID
 
-        val db3 = FirebaseDatabase.getInstance().getReference().child("Chats/$ChatRoom")
-        db3.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val lastMessageList = mutableListOf<String>()
-                for (l in snapshot.children) {
-                    val mess = l.child("chatMessage").getValue(String::class.java)
-                    mess?.let { lastMessageList.add(it) }
+        if (uid == null || adminUID == null) {
+            callback("No messages yet")
+            return
+        }
+
+        val chatRoom1 = uid + adminUID
+        val chatRoom2 = adminUID + uid
+
+        val db1 = FirebaseDatabase.getInstance()
+            .getReference()
+            .child("Chats/$chatRoom1")
+
+        db1.get()
+            .addOnSuccessListener { snapshot1 ->
+
+                if (snapshot1.exists() && snapshot1.childrenCount > 0L) {
+                    val lastMessage = getLastMessageFromSnapshot(snapshot1)
+                    callback(lastMessage)
+                } else {
+                    val db2 = FirebaseDatabase.getInstance()
+                        .getReference()
+                        .child("Chats/$chatRoom2")
+
+                    db2.get()
+                        .addOnSuccessListener { snapshot2 ->
+                            val lastMessage = if (snapshot2.exists() && snapshot2.childrenCount > 0L) {
+                                getLastMessageFromSnapshot(snapshot2)
+                            } else {
+                                "No messages yet"
+                            }
+
+                            callback(lastMessage)
+                        }
+                        .addOnFailureListener {
+                            callback("No messages yet")
+                        }
                 }
-
-                val lastM = lastMessageList.lastOrNull() ?: " "
-                callback(lastM) // Yeh ensure karega ki value milne ke baad hi callback chale
             }
-
-            override fun onCancelled(error: DatabaseError) {
-                callback("Error fetching message")
+            .addOnFailureListener {
+                callback("No messages yet")
             }
-        })
+    }
+
+    private fun getLastMessageFromSnapshot(snapshot: com.google.firebase.database.DataSnapshot): String {
+        val lastMessageList = mutableListOf<String>()
+
+        for (messageSnapshot in snapshot.children) {
+            val message = messageSnapshot.child("chatMessage").getValue(String::class.java)
+            if (!message.isNullOrEmpty()) {
+                lastMessageList.add(message)
+            }
+        }
+
+        return lastMessageList.lastOrNull() ?: "No messages yet"
+    }
+
+    private fun checkLoadingComplete(loadedCount: Int, totalCount: Int) {
+        if (loadedCount >= totalCount) {
+            if (posts.isEmpty()) {
+                showEmpty()
+            } else {
+                showData()
+            }
+        }
+    }
+
+    private fun showLoading() {
+        binding.chatLoader.visibility = View.VISIBLE
+        binding.noChatText.visibility = View.GONE
+        binding.messengerChatRecycler.visibility = View.GONE
+    }
+
+    private fun showEmpty() {
+        binding.chatLoader.visibility = View.GONE
+        binding.noChatText.visibility = View.VISIBLE
+        binding.messengerChatRecycler.visibility = View.GONE
+    }
+
+    private fun showData() {
+        binding.chatLoader.visibility = View.GONE
+        binding.noChatText.visibility = View.GONE
+        binding.messengerChatRecycler.visibility = View.VISIBLE
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+
         val activity = activity as? ViewProfile
-        activity?.showMainUI() // Activity me UI restore karne ke liye method call kar rahe hain
+        activity?.showMainUI()
+
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner){
-
-            startActivity(Intent(requireContext() , MainActivity::class.java))
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            startActivity(Intent(requireContext(), MainActivity::class.java))
             requireActivity().finish()
         }
     }
-
 }

@@ -1,55 +1,135 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/messengerRoot"
     android:layout_width="match_parent"
-    android:background="@color/black"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@drawable/bg_social_home"
+    android:fitsSystemWindows="true">
 
-    <!-- Top Buttons Section -->
+    <!-- Pink Glow -->
+    <View
+        android:layout_width="260dp"
+        android:layout_height="260dp"
+        android:layout_marginTop="-130dp"
+        android:layout_marginEnd="-70dp"
+        android:alpha="0.65"
+        android:background="@drawable/bg_pink_glow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Compact Top Bar -->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/messengerHeader"
+        android:layout_width="0dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        android:gravity="center">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/Chat"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="#83E90C"
-            android:background="@drawable/messenger_bg"
-            android:backgroundTint="@color/black"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_margin="5dp"
+            android:orientation="vertical">
 
-            android:text="Chat" />
+            <TextView
+                android:id="@+id/messengerTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="Messages"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/messengerSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:includeFontPadding="false"
+                android:text="Chats &amp;  requests"
+                android:textColor="#FF8ADC"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/RequestAdd"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/messenger_bg"
-            android:backgroundTint="@color/black"
-            android:textStyle="bold"
-            android:textColor="#E3FA07"
-            android:layout_margin="5dp"
-            android:textSize="20sp"
-            android:text="Request" />
     </LinearLayout>
 
-    <!-- Fragment Container Section -->
+    <!-- Compact Tabs -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/messengerTabsCard"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:cardBackgroundColor="#1B1326"
+        app:cardCornerRadius="17dp"
+        app:cardElevation="6dp"
+        app:strokeColor="#452750"
+        app:strokeWidth="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/messengerHeader">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <Button
+                android:id="@+id/Chat"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_messenger_tab_selected"
+                android:stateListAnimator="@null"
+                android:text="Chat"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/RequestAdd"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_messenger_tab_unselected"
+                android:stateListAnimator="@null"
+                android:text="Request"
+                android:textAllCaps="false"
+                android:textColor="#FF8ADC"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Main Fragment Area -->
     <FrameLayout
         android:id="@+id/fragmentMessenger"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="6dp"
+        android:clipToPadding="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/messengerTabsCard" />
 
-
-
-    </FrameLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

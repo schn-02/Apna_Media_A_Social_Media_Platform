@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Base premium dark gradient -->
+    <item>
+        <shape>
+            <gradient
+                android:angle="135"
+                android:startColor="#07030B"
+                android:centerColor="#13081D"
+                android:endColor="#0B1224" />
+        </shape>
+    </item>
+
+    <!-- Pink glow top-right -->
+    <item
+        android:top="-120dp"
+        android:right="-130dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="260dp"
+                android:centerColor="#70FF4FC3"
+                android:endColor="#00000000" />
+        </shape>
+    </item>
+
+    <!-- Blue glow bottom-left -->
+    <item
+        android:bottom="-140dp"
+        android:left="-130dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="280dp"
+                android:centerColor="#553A8DFF"
+                android:endColor="#00000000" />
+        </shape>
+    </item>
+
+    <!-- Purple soft glass overlay -->
+    <item>
+        <shape>
+            <gradient
+                android:angle="270"
+                android:startColor="#221B0F2B"
+                android:centerColor="#11120819"
+                android:endColor="#33100618" />
+        </shape>
+    </item>
+
+</layer-list>

@@ -1,26 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/transparent"
     tools:context=".Messenger.Request">
 
-
-    <TextView
-        android:id="@+id/searchRequest"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawablePadding="10dp"
-        android:padding="10dp"
-        android:text="search"
-        android:layout_marginTop="30dp"
-        android:textColor="#070707"
-        android:textSize="30sp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="90dp">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/messengerRequestRecycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp" />
+        <!-- Search Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            app:cardBackgroundColor="#1B1326"
+            app:cardCornerRadius="17dp"
+            app:cardElevation="6dp"
+            app:strokeColor="#452750"
+            app:strokeWidth="1dp">
+
+            <TextView
+                android:id="@+id/searchRequest"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/search1"
+                android:drawablePadding="12dp"
+                android:gravity="center_vertical"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:text="Search requests"
+                android:textColor="#A98FB3"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Small Label -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="Friend Requests"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <!-- Request List + Loader + Empty State -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/messengerRequestRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                android:paddingBottom="16dp"
+                android:visibility="gone" />
+
+            <ProgressBar
+                android:id="@+id/requestLoader"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:indeterminateTint="#FF4FC3"
+                android:visibility="visible" />
+
+            <LinearLayout
+                android:id="@+id/noRequestText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="24dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:background="@drawable/bg_request_icon_circle"
+                    android:gravity="center"
+                    android:text="👥"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="No Friend Requests"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="When someone sends you a friend request, it will appear here."
+                    android:textColor="#A98FB3"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
 
 </FrameLayout>

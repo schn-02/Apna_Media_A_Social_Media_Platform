@@ -1,225 +1,265 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/black"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginBottom="12dp"
+    app:cardBackgroundColor="#1B0F22"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="8dp"
+    app:strokeColor="#5B255D"
+    app:strokeWidth="1dp">
 
-
-    <LinearLayout
-        android:id="@+id/linearLayout245"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black"
-        android:layout_marginTop="28dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:background="@android:color/transparent"
+        android:paddingBottom="14dp">
 
-        <ImageView
-            android:id="@+id/PostProfile2"
-            android:layout_width="50dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/userstory" />
-
+        <!-- Top User Section -->
+        <!-- Top User Section -->
         <LinearLayout
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:orientation="vertical">
+            android:id="@+id/linearLayout245"
+            android:layout_width="0dp"
+            android:layout_height="82dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <FrameLayout
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:background="@drawable/bg_profile_image_ring_pink"
+                android:padding="3dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/PostProfile2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/userstory"
+                    app:shapeAppearanceOverlay="@style/CircleImageShape" />
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/PostUserName2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="Profile Name"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="Sachin Rawat" />
+
+                <TextView
+                    android:id="@+id/PostSong2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="Original Audio"
+                    android:textColor="#FF8ADC"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    tools:text="Original Audio • Apna Media • Full Song Name Here" />
+
+            </LinearLayout>
 
             <TextView
+                android:id="@+id/ShowPostDate2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:id="@+id/PostUserName2"
-                android:layout_marginTop="10dp"
-                android:text="Profile Name"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:maxWidth="400dp"
-                android:text="Song"
-                android:id="@+id/PostSong2"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:layout_marginStart="8dp"
+                android:text="Date"
+                android:textColor="#FF8ADC"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
 
         </LinearLayout>
+        <!-- Post Image Slider -->
+        <FrameLayout
+            android:id="@+id/postImageContainer"
+            android:layout_width="0dp"
+            android:layout_height="390dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/bg_post_image_container_pink"
+            android:clipToOutline="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout245">
 
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/PostImageSlider2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent" />
+
+            <FrameLayout
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="14dp"
+                android:layout_marginBottom="14dp"
+                android:background="@drawable/bg_music_button_pink">
+
+                <ImageView
+                    android:id="@+id/playMusic2"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/volume"
+                    android:visibility="visible"
+                    app:tint="#FFFFFF" />
+
+                <ImageView
+                    android:id="@+id/stopMusic2"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/slash"
+                    android:visibility="gone"
+                    app:tint="#FFFFFF" />
+
+            </FrameLayout>
+
+        </FrameLayout>
+
+        <!-- Like Comment Share Section -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/linearLayout345"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/bg_post_action_bar_pink"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:id="@+id/ShowPostDate2"
-                android:layout_height="wrap_content"
-                android:text="Date"
-                android:visibility="gone"
-                android:textStyle="bold"
-                android:textColor="#FFC107"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="10dp"
-                android:textSize="15sp"
-                />
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/postImageContainer">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/menu"
-                android:layout_marginTop="10dp"
-                android:id="@+id/menuDelete"
-                android:layout_marginLeft="50dp"
-                android:visibility="gone"
-                />
+                android:id="@+id/PostLike2"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:src="@drawable/heartpost" />
 
+            <TextView
+                android:id="@+id/Likes2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:text="Likes"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/PostComment2"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_marginStart="18dp"
+                android:src="@drawable/comment"
+                app:tint="#FF8ADC" />
+
+            <TextView
+                android:id="@+id/Comments2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/PostShare2"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:src="@drawable/send"
+                app:tint="#FF4FC3" />
+
+            <TextView
+                android:id="@+id/Share2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:text="Share"
+                android:textColor="#FF4FC3"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/PostCaption2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="18dp"
+            android:lineSpacingExtra="3dp"
+            android:text="Caption"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout345"
+            tools:text="Beautiful moments are meant to be shared ✨" />
 
-
-
-    </LinearLayout>
-
-    <com.denzcoskun.imageslider.ImageSlider
-        android:id="@+id/PostImageSlider2"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:background="@color/white"
-        android:backgroundTint="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout245" >
-
-
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="340dp"
-            android:id="@+id/playMusic2"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="22dp"
-            android:visibility="visible"
-            android:src="@drawable/volume" />
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:id="@+id/stopMusic2"
-            android:layout_marginTop="340dp"
+        <TextView
+            android:id="@+id/ShowPostDate3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="18dp"
+            android:text="Date"
+            android:textColor="#9E7AA8"
+            android:textSize="12sp"
+            android:textStyle="bold"
             android:visibility="gone"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="22dp"
-            android:src="@drawable/slash" />
-    </com.denzcoskun.imageslider.ImageSlider>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/PostCaption2" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout345"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/black"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PostImageSlider2">
-
-        <ImageView
-            android:id="@+id/PostLike2"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:src="@drawable/heartpost" />
-
-        <TextView
-            android:id="@+id/Likes2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="6dp"
-            android:text="Likes"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-
-        <ImageView
-            android:id="@+id/PostComment2"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:src="@drawable/comment" />
-
-        <TextView
-            android:id="@+id/Comments2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="6dp"
-            android:text="0"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-
-        <ImageView
-            android:id="@+id/PostShare2"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:src="@drawable/send" />
-
-        <TextView
-            android:id="@+id/Share2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="6dp"
-            android:text="Share"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/PostCaption2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Caption"
-        android:textColor="#0CE814"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout345" />
-
-    <TextView
-        android:id="@+id/ShowPostDate3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Date"
-        android:textColor="#F4DC07"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        android:visibility="gone"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PostCaption2"
-        app:layout_constraintVertical_bias="0.079" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

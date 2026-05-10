@@ -1,68 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/messenger_bg"
-    android:layout_height="130dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="96dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginBottom="6dp"
+    app:cardBackgroundColor="#1B1326"
+    app:cardCornerRadius="22dp"
+    app:cardElevation="8dp"
+    app:strokeColor="#452750"
+    app:strokeWidth="1dp">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:paddingStart="14dp"
+        android:paddingEnd="12dp">
 
-    <ImageView
-        android:id="@+id/messengerAddProfile"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_margin="10dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/userstory"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <!-- Profile Ring -->
+        <FrameLayout
+            android:id="@+id/profileRingBox"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:background="@drawable/bg_profile_image_ring"
+            android:padding="3dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/AddUsername"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="UserName"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/AddPeoples"
-        app:layout_constraintHorizontal_bias="0.21"
-        app:layout_constraintStart_toEndOf="@+id/messengerAddProfile"
-        app:layout_constraintTop_toTopOf="parent" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/messengerAddProfile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/userstory"
+                app:shapeAppearanceOverlay="@style/CircleImageShape" />
 
+        </FrameLayout>
 
+        <!-- User Info -->
+        <LinearLayout
+            android:id="@+id/userInfoBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@id/profileRingBox"
+            app:layout_constraintEnd_toStartOf="@id/AddPeoples"
+            app:layout_constraintStart_toEndOf="@id/profileRingBox"
+            app:layout_constraintTop_toTopOf="@id/profileRingBox">
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/AddPeoples"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginEnd="28dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.333"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="false"
-        app:lottie_rawRes="@raw/request" />
+            <TextView
+                android:id="@+id/AddUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="UserName"
+                android:textColor="#FFFFFF"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                tools:text="Sachin Rawat" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/AddCancelPeoples"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginEnd="28dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.333"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="false"
-        app:lottie_rawRes="@raw/cancel" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Send friend request"
+                android:textColor="#CFA9FF"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
+        </LinearLayout>
 
+        <!-- Add Button Animation -->
+        <FrameLayout
+            android:id="@+id/addActionBox"
+            android:layout_width="58dp"
+            android:layout_height="58dp"
+            android:background="@drawable/bg_add_action_box"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/AddPeoples"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:layout_gravity="center"
+                android:visibility="visible"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="false"
+                app:lottie_rawRes="@raw/request" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/AddCancelPeoples"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="false"
+                app:lottie_rawRes="@raw/cancel" />
+
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

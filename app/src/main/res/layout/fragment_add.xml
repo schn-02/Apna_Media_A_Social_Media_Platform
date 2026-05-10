@@ -1,48 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/searchRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@drawable/bg_social_home"
+    android:fitsSystemWindows="true"
     tools:context=".Fragments.Search">
 
+    <!-- Premium Pink Glow -->
+    <View
+        android:id="@+id/topGlow"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_marginTop="-115dp"
+        android:layout_marginEnd="-70dp"
+        android:alpha="0.75"
+        android:background="@drawable/bg_pink_glow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Header -->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="60dp"
-
-        >
-
-
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
+        android:id="@+id/searchHeader"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="18dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        android:layout_margin="10dp"
-        >
+        <TextView
+            android:id="@+id/searchTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/searchSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Find friends, creators and conversations"
+            android:textColor="#CFA9FF"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <!-- Search Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/searchCardView"
+        android:layout_width="0dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="18dp"
+        app:cardBackgroundColor="#1B1326"
+        app:cardCornerRadius="18dp"
+        app:cardElevation="10dp"
+        app:strokeColor="#452750"
+        app:strokeWidth="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchHeader">
 
         <EditText
             android:id="@+id/search"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:drawableLeft="@drawable/search1"
-            android:drawablePadding="10dp"
-            android:hint="Search"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="20sp"
+            android:background="@android:color/transparent"
+            android:drawableStart="@drawable/search1"
+            android:drawablePadding="12dp"
+            android:gravity="center_vertical"
+            android:hint="Search people"
+            android:inputType="text"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:singleLine="true"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#8FA0B5"
+            android:textSize="16sp"
             android:textStyle="bold" />
+
     </com.google.android.material.card.MaterialCardView>
 
+    <!-- Section Label -->
+    <TextView
+        android:id="@+id/suggestedResultsText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="18dp"
+        android:text="Suggested Results"
+        android:textColor="#FFD84D"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchCardView" />
+
+    <!-- Search Result RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/messengerAddRecycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-         />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingStart="10dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="104dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/suggestedResultsText" />
 
-    </LinearLayout>
-
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

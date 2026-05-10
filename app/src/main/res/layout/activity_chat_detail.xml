@@ -5,52 +5,85 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F3F0F0"
+    android:background="@drawable/bg_chat_detail_screen"
     android:orientation="vertical"
     tools:context=".Chat.chatDetail">
-
-    <!-- FrameLayout ka use Lottie ko background mein rakhne ke liye -->
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:layout_height="76dp"
+        android:background="@drawable/bg_chat_toolbar"
+        android:elevation="8dp"
         android:minHeight="?attr/actionBarSize"
+        android:paddingStart="8dp"
+        android:paddingEnd="12dp"
         android:theme="?attr/actionBarTheme">
 
-        <ImageView
-            android:id="@+id/back"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:drawingCacheQuality="auto"
-            app:srcCompat="@drawable/back1" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/chatprofilePic"
-            android:layout_width="80dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="25dp"
-            android:drawingCacheQuality="auto"
-            android:src="@drawable/userstory"
-            app:civ_border_color="#FF000000"
-            app:civ_border_width="4dp"
-            app:civ_circle_background_color="#EDE6E6" />
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:background="@drawable/bg_chat_back_button"
+                android:contentDescription="Back"
+                android:padding="10dp"
+                android:src="@drawable/back1"
+                app:tint="#FFFFFF" />
 
-        <TextView
-            android:id="@+id/Chatusername"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:drawingCacheQuality="auto"
-            android:maxWidth="280dp"
-            android:text="User Name"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/chatprofilePic"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="12dp"
+                android:src="@drawable/userstory"
+                app:civ_border_color="#FF4FC3"
+                app:civ_border_width="2dp"
+                app:civ_circle_background_color="#21102B" />
 
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/Chatusername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="User Name"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="Sachin Rawat" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/bg_chat_online_chip"
+                    android:includeFontPadding="false"
+                    android:paddingStart="10dp"
+                    android:paddingTop="4dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="4dp"
+                    android:text="Private chat"
+                    android:textColor="#DFA7F1"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -58,49 +91,71 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
-        <ImageView
-            android:id="@+id/background_image"
+
+        <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/v"  />
+            android:background="@drawable/bg_chat_pink_blue_gradient" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_chat_body_overlay" />
 
-        <!-- RecyclerView for chats -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/chatRecycler1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/transparent" />
+            android:background="@android:color/transparent"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:paddingStart="10dp"
+            android:paddingTop="14dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="16dp" />
 
     </FrameLayout>
-
     <LinearLayout
         android:id="@+id/linear"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#000000"
-        android:orientation="horizontal">
+        android:layout_height="76dp"
+        android:background="@drawable/bg_chat_input_bar"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="10dp">
 
         <EditText
             android:id="@+id/messageChats"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginRight="5dp"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_marginEnd="10dp"
             android:layout_weight="1"
-            android:background="@drawable/chat_send_message_bg"
-            android:ems="10"
-            android:hint="Enter here"
-            android:inputType="text"
-            android:textColorHint="#000000"
-            android:textSize="24sp"
+            android:background="@drawable/bg_chat_message_input"
+            android:gravity="center_vertical"
+            android:hint="Type a message..."
+            android:inputType="textMultiLine|textCapSentences"
+            android:maxLines="4"
+            android:minLines="1"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#A98FB3"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/send"
-            android:layout_width="55dp"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/send" />
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:background="@drawable/bg_chat_send_button"
+            android:contentDescription="Send"
+            android:padding="14dp"
+            android:src="@drawable/send"
+            app:tint="#FFFFFF" />
+
     </LinearLayout>
 
 </LinearLayout>

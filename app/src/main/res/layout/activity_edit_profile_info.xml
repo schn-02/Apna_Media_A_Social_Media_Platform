@@ -1,85 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_height="wrap_content"
+    android:layout_margin="18dp"
+    app:cardBackgroundColor="@android:color/transparent"
+    app:cardCornerRadius="30dp"
+    app:cardElevation="18dp"
+    app:strokeColor="#66FF4FC3"
+    app:strokeWidth="1.2dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_edit_profile_dialog"
         android:orientation="vertical"
-        android:layout_margin="20dp"
-        android:layout_gravity="center"
-        android:background="@color/black"
-        tools:context=".practice">
+        android:paddingStart="20dp"
+        android:paddingTop="22dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="20dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/dialogTitle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:text="Edit Profile Details"
-            android:layout_gravity="center"
-            android:textColor="#FDE407"
-            android:layout_marginTop="10dp" />
+            android:gravity="center"
+            android:text="Edit Profile"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-        <com.google.android.material.textfield.TextInputEditText
+        <TextView
+            android:id="@+id/dialogSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
+            android:text="Update your name and bio"
+            android:textColor="#DFA7F1"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:text="Name"
+            android:textColor="#FF8ADC"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <EditText
             android:id="@+id/EditName"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:hint="Enter Name "
-            android:gravity="center"
+            android:layout_height="56dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_edit_profile_input"
+            android:gravity="center_vertical"
+            android:hint="Enter your name"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:singleLine="true"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#A98FB3"
+            android:textSize="15sp"
             android:textStyle="bold"
-            android:textSize="20sp"
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
-            android:paddingStart="20dp" />
+            tools:text="Sachin Rawat" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Bio"
+            android:textColor="#FF8ADC"
+            android:textSize="13sp"
+            android:textStyle="bold" />
 
+        <EditText
+            android:id="@+id/EditBio"
+            android:layout_width="match_parent"
+            android:layout_height="112dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_edit_profile_input"
+            android:gravity="top|start"
+            android:hint="Write something about yourself..."
+            android:inputType="textMultiLine|textCapSentences"
+            android:maxLength="120"
+            android:maxLines="4"
+            android:paddingStart="16dp"
+            android:paddingTop="14dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="14dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#A98FB3"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tools:text="Android Developer | Firebase | Kotlin" />
 
+        <TextView
+            android:id="@+id/bioCounter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:gravity="end"
+            android:text="0/120"
+            android:textColor="#A98FB3"
+            android:textSize="11sp"
+            android:textStyle="bold" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="22dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-
-            <EditText
-                android:id="@+id/EditBio"
-                android:layout_width="match_parent"
-                android:textColor="@color/white"
-
-                android:layout_height="70dp"
-                android:focusableInTouchMode="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+            <TextView
+                android:id="@+id/cancelProfileInfo"
+                android:layout_width="0dp"
+                android:layout_height="54dp"
+                android:layout_marginEnd="10dp"
                 android:layout_weight="1"
-                android:layout_marginTop="20dp"
-                android:inputType="text"
-                android:hint="Enter Your Bio "
+                android:background="@drawable/bg_edit_profile_cancel_btn"
                 android:gravity="center"
-                android:padding="10dp"
-                android:textColorHint="@color/white"
-                android:textSize="16sp"
+                android:text="Cancel"
+                android:textColor="#DFA7F1"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:id="@+id/saveProfileInfo"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:layout_marginTop="20dp"
-            android:textSize="16sp"
-            android:text="Save"
-            android:layout_gravity="center"
-            android:backgroundTint="#06F810"/>
+            <TextView
+                android:id="@+id/saveProfileInfo"
+                android:layout_width="0dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_edit_profile_save_btn"
+                android:gravity="center"
+                android:text="Save"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
+    </LinearLayout>
 
-
-
-</ScrollView>
-
-
+</com.google.android.material.card.MaterialCardView>

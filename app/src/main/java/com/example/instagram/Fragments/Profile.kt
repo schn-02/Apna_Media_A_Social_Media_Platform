@@ -259,42 +259,95 @@ class Profile : Fragment() {
 
     private fun saveBioName() {
         val uid = FirebaseAuth.getInstance().currentUser?.uid
+
         if (uid == null) {
             Toast.makeText(requireContext(), "User not logged in", Toast.LENGTH_SHORT).show()
             return
         }
 
-        // Reference to the specific user's data
-        val db = FirebaseDatabase.getInstance().reference.child("User").child("UserInfo").child(uid)
+        val db = FirebaseDatabase.getInstance()
+            .reference
+            .child("User")
+            .child("UserInfo")
+            .child(uid)
 
-        // Fetch data from the database
         db.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val currentName = snapshot.child("name").value?.toString() ?: ""
                 val currentBio = snapshot.child("bio").value?.toString() ?: ""
 
-                // Inflate the dialog layout
-                val editProfile = ActivityEditProfileInfoBinding.inflate(LayoutInflater.from(requireContext()))
+                val editProfile = ActivityEditProfileInfoBinding.inflate(
+                    LayoutInflater.from(requireContext())
+                )
+
+                val alertDialog = AlertDialog.Builder(requireContext())
+                    .setView(editProfile.root)
+                    .create()
+
+                alertDialog.setOnShowListener {
+                    alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+                    val width = (resources.displayMetrics.widthPixels * 0.92).toInt()
+                    alertDialog.window?.setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT)
+                }
+
                 editProfile.apply {
-                    // Pre-fill the EditTexts with current values
                     EditName.setText(currentName)
                     EditBio.setText(currentBio)
 
-                    // Create and show the dialog
-                    val dialog = AlertDialog.Builder(requireContext())
-                    dialog.setView(editProfile.root)
-                    val alertDialog = dialog.create()
+                    bioCounter.text = "${EditBio.text.toString().length}/120"
+
+                    EditBio.addTextChangedListener(object : android.text.TextWatcher {
+                        override fun beforeTextChanged(
+                            s: CharSequence?,
+                            start: Int,
+                            count: Int,
+                            after: Int
+                        ) {
+                        }
+
+                        override fun onTextChanged(
+                            s: CharSequence?,
+                            start: Int,
+                            before: Int,
+                            count: Int
+                        ) {
+                            bioCounter.text = "${s?.length ?: 0}/120"
+                        }
+
+                        override fun afterTextChanged(s: android.text.Editable?) {
+                        }
+                    })
+
+                    cancelProfileInfo.setOnClickListener {
+                        alertDialog.dismiss()
+                    }
 
                     saveProfileInfo.setOnClickListener {
                         val name = EditName.text.toString().trim()
                         val bio = EditBio.text.toString().trim()
 
-                        if (name.isEmpty() || bio.isEmpty()) {
-                            Toast.makeText(requireContext(), "Fields cannot be empty", Toast.LENGTH_SHORT).show()
+                        if (name.isEmpty()) {
+                            EditName.error = "Name cannot be empty"
+                            EditName.requestFocus()
                             return@setOnClickListener
                         }
 
-                        // Update the database with new values
+                        if (bio.isEmpty()) {
+                            EditBio.error = "Bio cannot be empty"
+                            EditBio.requestFocus()
+                            return@setOnClickListener
+                        }
+
+                        if (name.length < 3) {
+                            EditName.error = "Name must be at least 3 characters"
+                            EditName.requestFocus()
+                            return@setOnClickListener
+                        }
+
+                        saveProfileInfo.isEnabled = false
+                        saveProfileInfo.text = "Saving..."
+
                         val updates = mapOf(
                             "name" to name,
                             "bio" to bio
@@ -302,28 +355,50 @@ class Profile : Fragment() {
 
                         db.updateChildren(updates)
                             .addOnCompleteListener { task ->
+                                saveProfileInfo.isEnabled = true
+                                saveProfileInfo.text = "Save"
+
                                 if (task.isSuccessful) {
-                                    Toast.makeText(requireContext(), "Successfully updated", Toast.LENGTH_SHORT).show()
-                                    alertDialog.dismiss() // Dismiss dialog after success
+                                    Toast.makeText(
+                                        requireContext(),
+                                        "Profile updated successfully",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+
+                                    alertDialog.dismiss()
                                 } else {
-                                    Toast.makeText(requireContext(), "Update failed. Please try again.", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(
+                                        requireContext(),
+                                        "Update failed. Please try again.",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                 }
                             }
                             .addOnFailureListener { error ->
-                                Toast.makeText(requireContext(), "Error: ${error.message}", Toast.LENGTH_SHORT).show()
+                                saveProfileInfo.isEnabled = true
+                                saveProfileInfo.text = "Save"
+
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Error: ${error.message}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                     }
-
-                    alertDialog.show()
                 }
+
+                alertDialog.show()
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(requireContext(), "Failed to fetch data: ${error.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Failed to fetch data: ${error.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
     }
-
     private fun userNameGet() {
         val uid = FirebaseAuth.getInstance().currentUser?.uid
 

@@ -4,31 +4,31 @@ Apna Media is a full-stack social media application inspired by Instagram, featu
 ## 📸 App Screenshots
 
 <table align="center" cellpadding="10">
-  <!-- Row 1 -->
-  <tr>
-    <td><img src="https://github.com/schn-02/Apna_Media_A_Social_Media_Platform/blob/4ae1c689a1808f23dd806dc7ee476e682e2dea37/Screenshot%202026-01-08%20014329.png" width="150"/></td>
-    <td><img src="https://github.com/schn-02/Apna_Media_A_Social_Media_Platform/blob/4ae1c689a1808f23dd806dc7ee476e682e2dea37/Screenshot%202026-01-08%20014337.png" width="150"/></td>
-    <td><img src="https://github.com/schn-02/Apna_Media_A_Social_Media_Platform/blob/4ae1c689a1808f23dd806dc7ee476e682e2dea37/Screenshot%202026-01-08%20014350.png" width="150"/></td>
-    <td><img src="https://github.com/schn-02/Apna_Media_A_Social_Media_Platform/blob/4ae1c689a1808f23dd806dc7ee476e682e2dea37/Screenshot%202026-01-08%20014424.png" width="150"/></td>
-    <td><img src="https://github.com/schn-02/Apna_Media_A_Social_Media_Platform/blob/4ae1c689a1808f23dd806dc7ee476e682e2dea37/Screenshot%202026-01-08%20014459.png" width="150"/></td>
-  </tr>
 
-  <!-- Row 2 -->
-  <tr>
-    <td><img src="https://github.com/schn-02/Apna_Media_A_Social_Media_Platform/blob/4ae1c689a1808f23dd806dc7ee476e682e2dea37/Screenshot%202026-01-08%20014559.png" width="150"/></td>
-    <td><img src="https://github.com/schn-02/Apna_Media_A_Social_Media_Platform/blob/4ae1c689a1808f23dd806dc7ee476e682e2dea37/Screenshot%202026-01-08%20014617.png" width="150"/></td>
-    <td><img src="https://github.com/schn-02/Apna_Media_A_Social_Media_Platform/blob/4ae1c689a1808f23dd806dc7ee476e682e2dea37/Screenshot%202026-01-08%20014653.png" width="150"/></td>
-    <td><img src="https://github.com/schn-02/Apna_Media_A_Social_Media_Platform/blob/4ae1c689a1808f23dd806dc7ee476e682e2dea37/Screenshot%202026-01-08%20014752.png" width="150"/></td>
-    <td><img src="https://github.com/schn-02/Apna_Media_A_Social_Media_Platform/blob/4ae1c689a1808f23dd806dc7ee476e682e2dea37/Screenshot%202026-01-08%20014704.png" width="150"/></td>
-  </tr>
+<tr>
+  <td><img src="screenshots/splash.jpeg" width="150"/></td>
+<td><img src="screenshots/sigin.jpeg" width="150"/></td>
+  <td><img src="screenshots/loginss.jpeg" width="150"/></td>
+  <td><img src="screenshots/home.jpeg" width="150"/></td>
+  <td><img src="screenshots/search.jpeg" width="150"/></td>
 
-  <!-- Row 3 -->
-  <tr>
-    <td><img src="https://github.com/schn-02/Apna_Media_A_Social_Media_Platform/blob/4ae1c689a1808f23dd806dc7ee476e682e2dea37/Screenshot%202026-01-08%20014820.png" width="150"/></td>
-    <td><img src="https://github.com/schn-02/Apna_Media_A_Social_Media_Platform/blob/4ae1c689a1808f23dd806dc7ee476e682e2dea37/Screenshot%202026-01-08%20014940.png" width="150"/></td>
-    <td><img src="https://github.com/schn-02/Apna_Media_A_Social_Media_Platform/blob/49d47e2d247c56a12b0e31c5d71d5a1633ec6d81/Screenshot%202026-01-08%20015003.png" width="150"/></td>
-    <td><img src="https://github.com/schn-02/Apna_Media_A_Social_Media_Platform/blob/4ae1c689a1808f23dd806dc7ee476e682e2dea37/Screenshot%202026-01-08%20015034.png" width="150"/></td>
-  </tr>
-</table>
 
-<br><br>
+  <td><img src="screenshots/chatting.jpeg" width="150"/></td>
+</tr>
+<tr>
+  <td><img src="screenshots/post.jpeg" width="150"/></td>
+  <td><img src="screenshots/profile.jpeg" width="150"/></td>
+  <td><img src="screenshots/bio.jpeg" width="150"/></td>
+
+  <td><img src="screenshots/notification.jpeg" width="150"/></td>
+
+  <td><img src="screenshots/request.jpeg" width="150"/></td>
+</tr>
+<tr>
+    <td><img src="screenshots/comment.jpeg" width="150"/></td>
+
+  <td><img src="screenshots/chat.jpeg" width="150"/></td>
+   <td><img src="screenshots/viewProfile.jpeg" width="150"/></td>
+</tr>
+  </table>
+
